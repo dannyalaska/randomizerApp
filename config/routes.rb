@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :lines
   resources :users
   root "sessions#new"
   get    'about'   => 'static_pages#about'

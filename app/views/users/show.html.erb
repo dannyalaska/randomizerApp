@@ -1,13 +1,16 @@
 <div id="user-page">
-  <% flash.each do |message_type, message| %>
-    <div class="alert alert-<%= message_type %>"><h1><%= message %></h1></div>
+
       <%=button_to 'DELETE ACCOUNT', @user, :method => :delete %>
       <h1>Ready Player: <%= @user.username%></h1><br>
 
       <h1>Let's Pop Some Letters</h1>
-      <input id="letters-input" type="text" placeholder="Put A Letter Here...">
+
       <div id="emoji-container">
 
       </div>
+      <div id="lines-container">
+
+      <%= render partial: 'lines/form' %>
+      <%= render partial: 'lines/list' %>
+      </div>
 </div>
-<% end %>

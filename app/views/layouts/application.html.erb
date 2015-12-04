@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>TunerUserSolution</title>
+  <title>Randomizer</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
@@ -11,7 +11,7 @@
   <div id="logout">
     <%= button_to 'Logout', logout_path, :method => :delete %>
   </div>
-  <%= yield %>
   <% end %>
+  <%= yield %>
 </body>
 </html>

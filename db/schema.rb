@@ -11,10 +11,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151203134022) do
+ActiveRecord::Schema.define(version: 20151204165315) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "lines", force: :cascade do |t|
+    t.string   "line"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer  "userId"
+    t.integer  "user_id"
+  end
+
+  add_index "lines", ["user_id"], name: "index_lines_on_user_id", using: :btree
+
+  create_table "lines_users", id: false, force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "line_id", null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "username"
@@ -24,4 +39,5 @@ ActiveRecord::Schema.define(version: 20151203134022) do
     t.string   "password_digest"
   end
 
+  add_foreign_key "lines", "users"
 end
