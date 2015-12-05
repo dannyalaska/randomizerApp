@@ -28,8 +28,10 @@ class LinesController < ApplicationController
 
     respond_to do |format|
       if @line.save
-        format.html { redirect_to @line, notice: 'Line was successfully created.' }
+        @user = User.find(session[:user_id])
+        format.html { redirect_to @user, notice: 'Line was successfully created.' }
         format.json { render :show, status: :created, location: @line }
+
       else
         format.html { render :new }
         format.json { render json: @line.errors, status: :unprocessable_entity }
@@ -42,7 +44,8 @@ class LinesController < ApplicationController
   def update
     respond_to do |format|
       if @line.update(line_params)
-        format.html { redirect_to @line, notice: 'Line was successfully updated.' }
+        @user = User.find(session[:user_id])
+        format.html { redirect_to @user, notice: 'Line was successfully updated.' }
         format.json { render :show, status: :ok, location: @line }
       else
         format.html { render :edit }
@@ -54,9 +57,10 @@ class LinesController < ApplicationController
   # DELETE /lines/1
   # DELETE /lines/1.json
   def destroy
+    @user = User.find(session[:user_id])
     @line.destroy
     respond_to do |format|
-      format.html { redirect_to lines_url, notice: 'Line was successfully destroyed.' }
+      format.html { redirect_to @user, notice: 'Line was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

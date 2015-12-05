@@ -15,9 +15,31 @@
 //= require turbolinks
 //= require_tree .
 $(document).ready(function(){
-  $("#letter")click(explodeLetter);
-}
+  $(".selector").click(populateFromLine);
+});
 
-var explodeLetter = function explodeLetter(){
-  
-}
+
+
+var populateFromLine = function populateFromLine() {
+  if ($("#line_line").val() != "") {
+    var newLineId = $("#line_line").val();
+    var newDiv = $("<div>").attr("id", newLineId).addClass("word-bank")
+    var letterArray = newLineId.split('');
+    for (var i = 0; i < letterArray.length; i++) {
+      letterArray[i] = $("<p>")
+        .attr("id", letterArray[i] )
+        .addClass("letters")
+        .text(letterArray[i])
+        .appendTo("#emoji-container");
+    $(letterArray[i]).click(explodeLetter);
+    };
+  }
+};
+
+//
+var explodeLetter = function explodeLetter(e){
+  var pop = new Audio("http://www.freesfx.co.uk/rx2/mp3s/3/3606_1329340920.mp3");
+  $(e.target).addClass("destroyed");
+  $(e.target).css('display', 'none');
+  pop.play();
+};
